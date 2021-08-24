@@ -5,7 +5,7 @@ import './index.scss';
 class App extends React.Component{
 
 	state = {
-		selectedTab: 'blueTab',
+		selectedTab: 'blueTab', 
 	};
 
 	render(){
