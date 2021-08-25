@@ -14,6 +14,7 @@ class App extends React.Component{
 				<TabBar
 				tintColor="#33A3F4"
 				barTintColor="white"
+				noRenderContent="true"
 				>
 				<TabBar.Item
 					title="首页"
@@ -28,7 +29,7 @@ class App extends React.Component{
 					}}
 					data-seed="logId"
 				>
-					首页
+					
 				</TabBar.Item>
 				<TabBar.Item
 					icon={<i className="iconfont icon-fangdajing" />}
@@ -43,7 +44,7 @@ class App extends React.Component{
 					}}
 					data-seed="logId1"
 				>
-					找房
+					
 				</TabBar.Item>
 				<TabBar.Item
 					icon={<i className="iconfont icon-zixun" />}
@@ -57,7 +58,7 @@ class App extends React.Component{
 					});
 					}}
 				>
-					咨询
+					
 				</TabBar.Item>
 				<TabBar.Item
 					icon={<i className="iconfont icon-ziyuan" />}
@@ -71,7 +72,7 @@ class App extends React.Component{
 					});
 					}}
 				>
-					我的
+					
 				</TabBar.Item>
 				</TabBar>
 			</div>
