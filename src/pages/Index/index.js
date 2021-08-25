@@ -1,44 +1,53 @@
 import React from 'react';
 import './index.scss';
-
+import axios from 'axios'
 import { Carousel } from 'antd-mobile';
 
 class Index extends React.Component {
     state = {
-        data: ['1', '2', '3'],
-        imgHeight: 176,
+        //轮播图状态
+        swipers: []
     }
-    componentDidMount() {
-        // simulate img loading
-        setTimeout(() => {
-        this.setState({
-            data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
-        });
-        }, 100);
+
+    //轮播图数据请求方法
+    async getSwipers(){
+        const res = await axios.get('http://localhost:8080/home/swiper');
+        this.setState({swipers: res.data.body})
     }
-    render() {
+
+    //渲染轮播图结构
+    renderSwipers(){
         return (
-        <div className="carousel">
-            <Carousel
-                autoplay
-                infinite
-            >
-            {this.state.data.map(val => (
+            this.state.swipers.map(item => (
                 <a
-                    key={val}
+                    key={item.id}
                     href="http://www.alipay.com"
-                    style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
+                    style={{ display: 'inline-block', width: '100%', height: 212 }}
                 >
                     <img
-                        src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                        src={`http://localhost:8080${item.imgSrc}`}
                         alt=""
                         style={{ width: '100%', verticalAlign: 'top' }}
                     />
                 </a>
-            ))}
-            </Carousel>
-        </div>
+            )) 
         );
+    }
+
+    componentDidMount() {
+        this.getSwipers();
+    }
+    render() {
+        return (
+            <div className="carousel">
+                <Carousel
+                    autoplay
+                    infinite
+                >
+                    {this.renderSwipers()}
+                </Carousel>
+            </div>
+        )
     }
 }
 
