@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { TabBar } from 'antd-mobile';
 import './index.scss';
 import Index from '../Index';
@@ -13,7 +13,7 @@ const tabItems = [
 	{
 		title: '首页',
 		icon: 'icon-shouye',
-		path: '/home/index'
+		path: '/home'
 	},
 	{
 		title: '找房',
@@ -38,6 +38,7 @@ class App extends React.Component{
 		selectedTab: this.props.location.pathname
 	};
 
+	// 根据TabBar数据渲染TabBarItem
 	renderTabBarItem(){
 		return tabItems.map(item => <TabBar.Item
 			title={item.title}
@@ -57,7 +58,7 @@ class App extends React.Component{
 	render(){
 		return(
 			<div className="Home">
-				<Route path="/home/index" component={Index} />
+				<Route exact path="/home" component={Index} />
 				<Route path="/home/list" component={HouseList} />
 				<Route path="/home/news" component={News} />
 				<Route path="/home/profile" component={Profile} />
