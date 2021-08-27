@@ -35,8 +35,18 @@ const tabItems = [
 class App extends React.Component{
 
 	state = {
+		// TabBar选中状态
 		selectedTab: this.props.location.pathname
 	};
+
+	componentDidUpdate(prevProps){
+		// url发生改变时，改变TabBar选中状态
+		if(prevProps.location.pathname !== this.props.location.pathname){
+			this.setState({
+				selectedTab: this.props.location.pathname
+			})
+		}
+	}
 
 	// 根据TabBar数据渲染TabBarItem
 	renderTabBarItem(){
