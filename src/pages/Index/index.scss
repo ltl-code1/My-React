@@ -1,5 +1,25 @@
-.carousel{
-    .slider-list{
-        
+.index{
+    .groups{
+        .am-flexbox-align-stretch{
+            background-color: inherit;
+            margin-bottom: 10px;
+
+            .am-grid-item{
+                background-color: #fff;
+                border-radius: 5px;
+
+                &:first-of-type{
+                    margin-right: 10px;
+                }
+
+                .item-img{
+                    width: 60px;
+                }
+
+                .group-title{
+                    margin-bottom: 5px;
+                }
+            }
+        }
     }
 }
