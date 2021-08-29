@@ -1,17 +1,8 @@
 import React from 'react';
 import './index.scss';
 import axios from 'axios'
-<<<<<<< Updated upstream
 import { Carousel, Grid, Flex } from 'antd-mobile';
 
-
-
-const data = Array.from(new Array(4)).map((_val, i) => ({
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-    text: `name${i}`,
-  }));
-=======
-import { Carousel, Flex } from 'antd-mobile';
 
 
 // 导航菜单数据
@@ -41,18 +32,14 @@ const navs = [
         path: '/home/list'
     }
 ]
->>>>>>> Stashed changes
 
 class Index extends React.Component {
     state = {
         //轮播图状态
         swipers: [],
-<<<<<<< Updated upstream
+        isSwipers: false,
         //租房小组状态
         groups: []
-=======
-        isSwipers: false
->>>>>>> Stashed changes
     }
 
     //轮播图数据请求
@@ -79,7 +66,7 @@ class Index extends React.Component {
                 <a
                     key={item.id}
                     href="http://www.alipay.com"
-                    style={{ display: 'inline-block', width: '100%', height: 212 }}
+                    style={{ display: 'inline-block', width: '100%' }}
                 >
                     <img
                         src={`http://localhost:8080${item.imgSrc}`}
@@ -109,28 +96,8 @@ class Index extends React.Component {
     render() {
         return (
             <div className="index">
-<<<<<<< Updated upstream
-                <div className="carousel">
-                    <Carousel
-                        autoplay
-                        infinite
-                    >
-                        {this.renderSwipers()}
-                    </Carousel>
-                </div>
-                {/* 租房小组 */}
-                <div className="groups">
-                    <Grid data={data} activeStyle hasLine={false} square={false} columnNum={2} renderItem={()=>
-                        <Flex justify="around" align="center">
-                            <div className="left">
-                                <h4 className="group-title">title</h4>
-                                <span>content</span>
-                            </div>
-                            <img className="item-img" src="http://localhost:8080/img/groups/1.png" alt=""></img>
-                        </Flex>
-                    } />
-=======
-                {/* 轮播图模块 */}
+
+                {/********************* 轮播图模块 *********************/}
                 <div className="carousel">
                     {
                         // 为解决轮播图不播放和高度不够的问题，isSwipers为true时再进行渲染
@@ -139,15 +106,46 @@ class Index extends React.Component {
                             {this.renderSwipers()}
                         </Carousel> :''
                     }
+                    {/* 搜索部分 */}
+                    <Flex className="search-container">
+                        <Flex className="search">
+                            <div className="location" onClick={()=>this.props.history.push('/cityList')}>
+                                <span className="city">上海</span>
+                                <i className={`iconfont icon-xiangxia`} />
+                            </div>
+                            <div className="search-content">
+                                <i className={`iconfont icon-fangdajing`} />
+                                <span className="propmt">请输入小区或地址</span>
+                            </div>
+                        </Flex>
+                        <i className={`iconfont icon-ditudingwei`} onClick={()=>this.props.history.push('/map')} />
+                    </Flex>
                 </div>
 
-                {/* 导航菜单部分 */}
+                {/********************* 导航菜单部分 *********************/}
                 <div className="navigation">
                     <Flex>
                         {this.renderNavigation()}
                     </Flex>
->>>>>>> Stashed changes
                 </div>
+
+                {/********************* 租房小组 *********************/}
+                <div className="groups">
+                    <div className="group-header">
+                        <h3 className="title">租房小组</h3>
+                        <span className="more">更多</span>
+                    </div>
+                    <Grid data={this.state.groups} activeStyle hasLine={false} square={false} columnNum={2} renderItem={(item)=>
+                        <Flex justify="around" align="center" key={item.id}>
+                            <div className="left">
+                                <h4 className="group-title">{item.title}</h4>
+                                <span>{item.desc}</span>
+                            </div>
+                            <img className="item-img" src={`http://localhost:8080${item.imgSrc}`} alt=""></img>
+                        </Flex>
+                    } />
+                </div>
+                
             </div>
         )
     }
